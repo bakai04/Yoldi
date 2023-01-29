@@ -3,10 +3,17 @@ import Logo from "@/assets/icons/logo-wrapper.svg";
 import style from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
+import light from "@/assets/icons/Lights.svg"
 
 const Header = () => {
   return (
     <header className={style.header}>
+      <div className={style.headerTop}>
+        <Image src={light} width={52} height={12} alt="light" />
+        <div className={style.headerTitle}>
+          <p>yoldi.agency — тестовое задание</p>
+        </div>
+      </div>
       <div className={style.container}>
         <div className={style.logo}>
           <Link href={"/"}>
