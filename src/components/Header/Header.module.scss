@@ -1,4 +1,30 @@
 .header {
+  border-bottom: 1px solid #E6E6E6;
+
+  .headerTop {
+    width: 100%;
+    padding: 15px 30px 15px 20px;
+    display: flex;
+
+    .headerTitle {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 744px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      padding: 6px 0px;
+      text-align: center;
+
+      p {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: -0.2px;
+        color: #797979;
+        mix-blend-mode: luminosity;
+      }
+    }
+  }
   .container{
     width: 100%;
     padding: 15px 30px 15px 20px;
