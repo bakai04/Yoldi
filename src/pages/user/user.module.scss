@@ -1,0 +1,27 @@
+.userProfile {
+  padding-bottom: 137px;
+
+  .userProfileName {
+    margin-top: 85px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 140%;
+    color: #000000;
+    margin-bottom: 10px;
+  }     
+  .userProfileEmail {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #838383;
+    margin-bottom: 30px;
+  }
+  .userProfileDescription {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #000000;
+    max-width: 600px
+  }
+}

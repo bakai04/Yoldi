@@ -1,0 +1,18 @@
+.footer {
+  text-align: center;
+
+  .footerInner {
+    padding: 23px 0px;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #838383;
+  } 
+
+  .footerLink{
+    color: var(--black-color);
+    font-weight: 500;
+  }
+}

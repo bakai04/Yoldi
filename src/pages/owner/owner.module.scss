@@ -1,0 +1,54 @@
+.owner {
+  padding-bottom: 137px;
+  .ownerInner {
+    margin-top: 85px;
+    display: flex;
+    justify-content: space-between;
+   
+    .ownerInform {
+      width: 100%;
+
+      .ownerName {
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 140%;
+        color: #000000;
+        margin-bottom: 10px;
+      }      
+
+      .ownerEmail {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+        color: #838383;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .ownerDescription {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    color: #000000;
+    margin-bottom: 60px;
+    max-width: 600px
+  }
+
+  .ownerButton {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    padding: 7px 22px 7px 24px;
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    border-radius: 5px;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    color: #000000;
+    gap: 13px;
+  }
+
+}

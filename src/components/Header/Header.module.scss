@@ -1,0 +1,39 @@
+.header {
+  .container{
+    width: 100%;
+    padding: 15px 30px 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .headerInform {
+        width: 225px;
+        font-family: inherit;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+        color: #000000;
+      }
+    }
+
+    .headerSignIn{
+      font-family: inherit;
+      color: #000000;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 160%;
+      padding: 7px 33px;
+      background: #FFFFFF;
+      border: 1px solid #D5D5D5;
+      border-radius: 5px;
+    }
+  }
+
+}
