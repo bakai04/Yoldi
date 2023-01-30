@@ -4,12 +4,14 @@ import React from 'react'
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 import { editSchema } from "./components/validatingSchema";
 import style from "./EditProfile.module.scss";
-
+import useSWRMutation, { useSWRConfig } from "swr";
+import { editUserProfile } from "../../core/api/editUserProfile";
 
 interface IEditForm {
   name: string,
   email: string,
-  slug: string,
+  description: string,
+  slug: string
 }
 
 interface IEditProfileProps {
@@ -18,8 +20,11 @@ interface IEditProfileProps {
 }
 
 const EditProfile = ({ toggleEditModal, userData }: IEditProfileProps) => {
-  const onEditProfile = (data: IEditForm) => {
+  const { mutate } = useSWRConfig();
+
+  const onEditProfile = async (data: IEditForm) => {
     toggleEditModal();
+    mutate("userData", editUserProfile(data));
   }
 
   return (
@@ -29,18 +34,19 @@ const EditProfile = ({ toggleEditModal, userData }: IEditProfileProps) => {
         initialValues={{
           name: userData?.name || "",
           email: userData?.email || "",
-          slug: userData?.slug || "",
+          description: userData?.description || "",
+          slug: userData?.slug || ""
         }}
         validateOnMount
         validateOnChange
         validationSchema={editSchema}
         onSubmit={(values: IEditForm, { resetForm }) => {
-          resetForm();
           onEditProfile(values);
+          resetForm();
         }}
       >
         {({ isValid, resetForm }) => (
-          <EditProfileForm isValid={isValid} resetForm={resetForm} toggleEditModal={toggleEditModal}/>
+          <EditProfileForm isValid={isValid} resetForm={resetForm} toggleEditModal={toggleEditModal} />
         )}
       </Formik>
     </div>

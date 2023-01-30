@@ -6,24 +6,17 @@ import Image from "next/image";
 import logout from "@/assets/icons/profileIcons/logout-icon.svg";
 import EditProfile from "@/components/EditProfile/EditProfile";
 import useSWR from "swr";
-import getUserData from "@/core/api/getUserData";
+import { getUserData } from "@/core/api/getUserData";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 function Owner() {
   const [isEdit, setIsEdit] = useState(false);
-  const { data: userData, mutate } = useSWR("userData", getUserData);
+  const { data: userData } = useSWR("userData", getUserData);
   const router = useRouter();
 
   const toggleEditModal = () => {
     setIsEdit(prev => !prev)
   }
-
-  useEffect(()=>{
-    const { email } = JSON.parse(localStorage.getItem("userData") || "");
-    const slug = email.replace(/@/g, "--");
-    mutate(slug);
-  },[])
 
   const onLogout = () => {
     localStorage.clear();
@@ -32,7 +25,7 @@ function Owner() {
 
   return (
     <div className={style.owner}>
-      <ProfilePhotos isOwner={true} userData={userData}/>
+      <ProfilePhotos isOwner={true} userData={userData} />
       <div className="container">
         <div className={style.ownerInner}>
           <div className={style.ownerInform}>
@@ -44,14 +37,14 @@ function Owner() {
             Редактировать
           </button>
         </div>
-        <p className={style.ownerDescription}>Рыбатекст используется дизайнерами, проектировщиками и фронтендерами, когда нужно быстро заполнить макеты или прототипы содержимым. Это тестовый контент, который не должен нести никакого смысла, лишь показать наличие самого текста или продемонстрировать типографику в деле.</p>
+        <p className={style.ownerDescription}>{userData?.description}</p>
         <button className={style.ownerButton} onClick={onLogout}>
           <Image src={logout} width={19} height={19} alt="logout" />
           Выйти
         </button>
       </div>
       {
-        isEdit && <EditProfile userData={userData} toggleEditModal={toggleEditModal}/>
+        isEdit && <EditProfile userData={userData} toggleEditModal={toggleEditModal} />
       }
     </div>
   )

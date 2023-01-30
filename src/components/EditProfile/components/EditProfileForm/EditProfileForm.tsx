@@ -30,12 +30,12 @@ const EditProfileForm = ({ isValid, resetForm, toggleEditModal }: IEditFormProps
       </div>
       <div>
         <p className={style.editInputTitle}>Описание</p>
-        <Field as="textarea" name="slug" className={style.editFormSlug} />
-        <ErrorMessage className={style.errorMassage} name="slug" component={"p"} />
+        <Field as="textarea" name="description" className={style.editFormSlug} />
+        <ErrorMessage className={style.errorMassage} name="description" component={"p"} />
       </div>
       <div className={style.editFormButtons}>
-        <button className={style.editFormReset} onClick={onResetForm}>Отменa</button>
-        <button className={style.editFormSubmit} disabled={!isValid}>Сохранить</button>
+        <button className={style.editFormReset} type="button" onClick={onResetForm}>Отменa</button>
+        <button className={style.editFormSubmit} type="submit" disabled={!isValid}>Сохранить</button>
       </div>
     </Form>
   )

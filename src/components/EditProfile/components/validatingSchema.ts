@@ -4,5 +4,5 @@ export const editSchema = Yup.object().shape({
   email: Yup.string()
   .required("Обязательное поле")
   .email("Введите правильный адрес"),
-  slug: Yup.string().required("Обязательное поле")
+  description: Yup.string().required("Обязательное поле")
 })

@@ -27,27 +27,27 @@ const Header = () => {
             Разрабатываем и запускаем сложные веб проекты
           </p>
         </div>
-        <Link href={"/sign-in"}>
-          {
-            userAuth ?
-              <div className={style.headerUser}>
-                <p className={style.headerUserName}>{userData?.name}</p>
-                <Link href={"/owner"} className={style.headerUserPhoto}>
-                  {userData?.image !== null &&
-                    <Image
-                      alt="photo"
-                      src={userData?.image?.url || ""}
-                      width={userData?.image ? +userData.image.width : 0}
-                      height={userData?.image ? +userData.image.height : 0} />
-                  }
-                  {userData?.name[0]}
-                </Link>
-              </div> :
+        {
+          userAuth ?
+            <div className={style.headerUser}>
+              <p className={style.headerUserName}>{userData?.name}</p>
+              <Link href={"/owner"} className={style.headerUserPhoto}>
+                {userData?.image &&
+                  <Image
+                    alt="photo"
+                    src={userData?.image?.url || ""}
+                    width={userData?.image ? +userData.image.width : 0}
+                    height={userData?.image ? +userData.image.height : 0} />
+                }
+                {userData?.name[0]}
+              </Link>
+            </div> :
+            <Link href={"/sign-in"}>
               <button className={style.headerSignIn}>
                 Войти
               </button>
-          }
-        </Link>
+            </Link>
+        }
       </div>
     </header>
   )
