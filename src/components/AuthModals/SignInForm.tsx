@@ -5,6 +5,10 @@ import style from "./AuthModals.module.scss";
 import email from "@/assets/icons/inputMail.svg";
 import password from "@/assets/icons/inputPassword.svg";
 import { signInSchema } from "./component/utils";
+import useSWRMutation from "swr/mutation";
+import onGetToken from "@/core/api/onGetToken";
+import { useRouter } from "next/router";
+
 
 interface ISignIn {
   email: string,
@@ -12,9 +16,14 @@ interface ISignIn {
 }
 
 const SignInForm = () => {
+  const { trigger: authTrigger } = useSWRMutation("/auth/login/", onGetToken);
+  const router = useRouter()
 
-  const onSignIn = (data: ISignIn) => {
-    console.log(data);
+  const onSignIn = async (data: ISignIn) => {
+    const { value } = await authTrigger(data);
+    if (value)
+      localStorage.setItem("userData", JSON.stringify({ email: data.email, token: value }));
+    router.push("/");
   }
 
   return (

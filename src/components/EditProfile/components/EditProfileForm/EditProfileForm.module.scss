@@ -1,0 +1,106 @@
+.editForm {
+  position: absolute;
+  padding: 30px;
+  background-color: #FFF;
+  max-width: 600px;
+  width: 100%;
+  animation-name: onCreate;
+  animation-duration: .3s;
+  
+  .editFormTitle {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 140%;
+    color: #000000;
+    margin-bottom: 10px;
+  }
+
+  .editInputTitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    color: #838383;
+    margin-top: 15px;
+  }
+
+  .editFormInput {
+    background: #FFFFFF;
+    border: 1px solid #838383;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin-top: 5px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    color: #838383;
+  }
+
+  .editFormSlug {
+    background: #FFFFFF;
+    border: 1px solid #838383;
+    border-radius: 5px;
+    padding: 12px 20px;
+    margin-top: 5px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 160%;
+    color: #838383;
+    min-height: 154px;
+    resize: none;
+  }
+
+  .errorMassage{
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 160%;
+    color: #d62c54;
+  }
+  
+  .editFormButtons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-top: 25px;
+    
+    .editFormReset {
+      width: 50%;
+      padding: 12px 0px;
+      background: #FFFFFF;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 160%;
+      color: #000000;
+      border: 1px solid #838383;
+      border-radius: 5px;
+    }
+
+    .editFormSubmit {
+      width: 50%;
+      padding: 12px 0px;
+      border-radius: 5px;
+      font-family: inherit;
+      background: #000000;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 160%;
+      color: #F3F3F3;
+
+      &:disabled {
+        background-color: #D5D5D5;
+      }
+    }
+  }
+} 
+
+@keyframes onCreate {
+  from {
+    transform: scale(.50);
+  }
+  to{
+    transform: scale(1);
+  }
+}

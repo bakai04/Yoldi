@@ -1,4 +1,4 @@
-import { IUser } from "@/models/user";
+import { IUser } from "@/core/models/user";
 import Image from "next/image";
 import Link from "next/link";
 import React from 'react';

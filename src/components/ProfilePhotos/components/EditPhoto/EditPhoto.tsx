@@ -35,6 +35,7 @@ export const EditCover = ({ isEmpty }: IProps) => {
 }
 
 export const EditProfile = () => {
+  
   return (
     <div className={style.wrapperProfile}>
       <input type="file" className={style.editCoverInput} />
