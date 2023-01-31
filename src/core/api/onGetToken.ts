@@ -1,5 +1,3 @@
-import axios from "axios"
-
 interface ISignUpArg {
   arg: {
     name?: string

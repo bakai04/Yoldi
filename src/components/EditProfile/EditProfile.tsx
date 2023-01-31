@@ -4,12 +4,11 @@ import React from 'react'
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 import { editSchema } from "./components/validatingSchema";
 import style from "./EditProfile.module.scss";
-import useSWRMutation, { useSWRConfig } from "swr";
+import { useSWRConfig } from "swr";
 import { editUserProfile } from "../../core/api/editUserProfile";
 
 interface IEditForm {
   name: string,
-  email: string,
   description: string,
   slug: string
 }
@@ -24,16 +23,16 @@ const EditProfile = ({ toggleEditModal, userData }: IEditProfileProps) => {
 
   const onEditProfile = async (data: IEditForm) => {
     toggleEditModal();
-    mutate("userData", editUserProfile(data));
+    mutate("/profile", editUserProfile(data));
   }
 
   return (
+
     <div className={style.editProfile}>
       <div className={style.editProfileBack} onClick={toggleEditModal}></div>
       <Formik
         initialValues={{
           name: userData?.name || "",
-          email: userData?.email || "",
           description: userData?.description || "",
           slug: userData?.slug || ""
         }}

@@ -3,9 +3,12 @@
 
   .container{
     width: 100%;
+    max-width: 1280px;
     padding: 15px 30px 15px 20px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     align-items: center;
 
     .logo {
@@ -69,16 +72,25 @@
         color: #000000;
 
         img {
-          width: 100%;
-          height: auto;
+          object-fit: cover;
           position: absolute;
           border: 1px solid #E6E6E6;
           border-radius: 999999px;
         }
       }
     }
-
-
   }
+}
 
+
+@media (max-width: 576px) {
+  .header {
+    .container{
+      .logo {
+        .headerInform {
+          display: none;
+        }
+      }
+    }
+  }
 }

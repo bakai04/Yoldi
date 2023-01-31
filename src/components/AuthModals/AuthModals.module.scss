@@ -24,3 +24,13 @@
     }
   }
 }
+
+@media (max-width: 375px) {
+  .auth {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 155px);
+    background-color: #FFF;
+  }
+}

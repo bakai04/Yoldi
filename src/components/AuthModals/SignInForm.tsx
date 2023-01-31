@@ -8,6 +8,7 @@ import { signInSchema } from "./component/utils";
 import useSWRMutation from "swr/mutation";
 import onGetToken from "@/core/api/onGetToken";
 import { useRouter } from "next/router";
+import { getUserData } from "../../core/api/getUserData";
 
 
 interface ISignIn {
@@ -17,13 +18,15 @@ interface ISignIn {
 
 const SignInForm = () => {
   const { trigger: authTrigger } = useSWRMutation("/auth/login/", onGetToken);
+  const { trigger: userDataTrigger } = useSWRMutation("/profile", getUserData) 
   const router = useRouter()
 
   const onSignIn = async (data: ISignIn) => {
     const { value } = await authTrigger(data);
     if (value)
-      localStorage.setItem("userData", JSON.stringify({ email: data.email, token: value }));
+      localStorage.setItem("token", value);
     router.push("/");
+    userDataTrigger()
   }
 
   return (

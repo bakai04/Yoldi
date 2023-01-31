@@ -1,7 +1,8 @@
-import { SubmitButton } from "@/components/Inputs/Inputs";
+import Header from "@/components/Header/Header";
 import { ErrorMessage, Field, Form } from "formik";
 import React from 'react'
 import style from "./EditProfileForm.module.scss"
+import { useEffect } from "react";
 
 interface IEditFormProps {
   isValid: boolean
@@ -10,11 +11,14 @@ interface IEditFormProps {
 }
 
 const EditProfileForm = ({ isValid, resetForm, toggleEditModal }: IEditFormProps) => {
-
-  const onResetForm = () =>{
+  const onResetForm = () => {
     resetForm();
     toggleEditModal();
   }
+
+  useEffect(()=>{
+    location.hostname
+  },[]) 
   return (
     <Form className={style.editForm}>
       <h2 className={style.editFormTitle}>Редактировать профиль</h2>
@@ -25,7 +29,10 @@ const EditProfileForm = ({ isValid, resetForm, toggleEditModal }: IEditFormProps
       </div>
       <div>
         <p className={style.editInputTitle}>Адрес профиля</p>
-        <Field name="email" type="email" className={style.editFormInput} />
+        <div className={style.editFormEmail}>
+          <p>{location.hostname}/profile/</p>
+          <Field name="slug" type="text" className={style.editEmailInput} />
+        </div>
         <ErrorMessage className={style.errorMassage} name="email" component={"p"} />
       </div>
       <div>

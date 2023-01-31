@@ -10,30 +10,33 @@ import useSWR from "swr";
 import { getUserData } from "../../../../core/api/getUserData";
 import { useSWRConfig } from "swr";
 import { editUserProfile } from "@/core/api/editUserProfile";
+import { IUser } from "../../../../core/models/user";
 
 interface IFormData {
   file: File
 }
 
-export const EditCover = () => {
-  const { data: userData } = useSWR("userData", getUserData);
-  const { mutate: mutate } = useSWRConfig();
+const editImage = async (formData: any, mutate: any, userData: IUser | undefined, key: string) => {
+  const response = await crud.post("image", formData);
+  mutate("userData", editUserProfile({
+    [key]: response.id,
+    name: userData?.name,
+    email: userData?.email,
+    slug: userData?.slug,
+  }));
+}
 
-  const editCoverImage = async (formData: any) => {
-    const response = await crud.post("image", formData);
-    mutate("userData", editUserProfile({
-      coverId: response.id,
-      name: userData?.name,
-      email: userData?.email,
-      slug: userData?.slug,
-    }));
-  }
+
+
+export const EditCover = () => {
+  const { data: userData } = useSWR("/profile", getUserData);
+  const { mutate: mutate } = useSWRConfig();
 
   const onChangeFileInput = (e: ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
     formData.append("file", e.target.files![0]!);
-    editCoverImage(formData);
-    e.target.value = ""
+    editImage(formData, mutate, userData, "coverId");
+    e.target.value = "";
   }
 
   const onDeleteCover = () => {
@@ -68,11 +71,19 @@ export const EditCover = () => {
 }
 
 export const EditProfile = () => {
+  const { data: userData } = useSWR("/profile", getUserData);
+  const { mutate: mutate } = useSWRConfig();
 
-  
+  const onChangeFileInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const formData = new FormData();
+    formData.append("file", e.target.files![0]!);
+    editImage(formData, mutate, userData, "imageId");
+    e.target.value = "";
+  }
+
   return (
     <div className={style.wrapperProfile}>
-      <input type="file" className={style.editCoverInput} />
+      <input type="file" className={style.editCoverInput} onChange={(onChangeFileInput)} />
       <Image src={EditPhoto} width={40} height={32} alt="install" />
     </div>
   )

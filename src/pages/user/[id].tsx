@@ -1,15 +1,14 @@
 import ProfilePhotos from "@/components/ProfilePhotos/ProfilePhotos";
 import React from 'react'
 import style from "./user.module.scss"
-import { getUserBySlag } from "@/core/api/getUserData";
+import { getUserData } from "@/core/api/getUserData";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import useSWR from "swr";
 
 const UserProfile = () => {
   const router = useRouter();
   const { id } = router.query
-  const { data: userData } = useSWR(id, getUserBySlag);
+  const { data: userData } = useSWR(`/user/${id}`, getUserData);
 
   return (
     <div className={style.userProfile}>

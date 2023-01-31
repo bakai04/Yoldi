@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 
 function Owner() {
   const [isEdit, setIsEdit] = useState(false);
-  const { data: userData } = useSWR("userData", getUserData);
+  const { data: userData, mutate } = useSWR("/profile", getUserData);
   const router = useRouter();
 
   const toggleEditModal = () => {
@@ -20,6 +20,7 @@ function Owner() {
 
   const onLogout = () => {
     localStorage.clear();
+    mutate(getUserData("/profile"))
     router.push("/sign-in")
   }
 

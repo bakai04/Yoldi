@@ -16,13 +16,13 @@ const UserCard = ({ userData }: IUserCardProps) => {
           <Image
             alt="photo"
             src={userData.image?.url || ""}
-            width={userData.image ? +userData.image.width : 0}
-            height={userData.image ? +userData.image.height : 0} />
+            width={50}
+            height={50} />
         }
         {userData.name[0]}
       </div>
       <div className={style.userInform}>
-        <Link href={`/user/${userData.slug}`} className={style.userName}>{userData.name}</Link>
+        <Link href={`/user/${userData.slug}`} className={style.userName}>{userData.name}  </Link>
         <a href={`mailto:{userData.email}`} target="blank" className={style.userEmail}>{userData.email}</a>
       </div>
     </div>

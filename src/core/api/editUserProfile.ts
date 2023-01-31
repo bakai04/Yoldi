@@ -1,9 +1,5 @@
-import { Fetcher } from "swr";
-import { IUser } from "../models/user";
-
-
 export async function editUserProfile<T>( body :T) {
-  const { token } = JSON.parse(localStorage.getItem("userData") || "");
+  const token = localStorage.getItem("token");
   return await fetch(`https://frontend-test-api.yoldi.agency/api/profile/`, {
     method: "PATCH",
     headers: {

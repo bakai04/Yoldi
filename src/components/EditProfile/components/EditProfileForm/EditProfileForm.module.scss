@@ -6,7 +6,7 @@
   width: 100%;
   animation-name: onCreate;
   animation-duration: .3s;
-  
+
   .editFormTitle {
     font-weight: 500;
     font-size: 30px;
@@ -34,6 +34,33 @@
     color: #000000;
     font-size: 16px;
     line-height: 160%;
+  }
+
+  .editFormEmail {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #838383;
+    margin-top: 5px;
+    
+    p{
+      padding: 12px 20px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 160%;
+      color: #838383;
+      background: #F3F3F3;
+    }
+
+    .editEmailInput {
+      width: 100%;
+      font-weight: 500;
+      color: #000000;
+      font-size: 16px;
+      padding: 12px 20px;
+      line-height: 160%;
+      border-left: 1px solid #838383;
+    }
   }
 
   .editFormSlug {
@@ -103,4 +130,16 @@
   to{
     transform: scale(1);
   }
+}
+
+@media( max-width: 600px){
+  .editForm {
+    position: absolute;
+    padding: 30px;
+    background-color: #FFF;
+    width: 100vw;
+    height: 100vh;
+    animation-name: onCreate;
+    animation-duration: .3s;
+  }  
 }

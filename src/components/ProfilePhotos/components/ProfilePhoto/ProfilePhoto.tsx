@@ -15,7 +15,7 @@ const ProfilePhoto = ({ isOwner, userData }: IProps) => {
       <div className={style.wrapperInner}>
         {
           userData?.image ?
-            <Image src={userData.image?.url} width={100} height={100} alt="profile" /> :
+            <Image src={userData.image?.url} className={style.profileImg} width={100} height={100} alt="profile" /> :
             <div className={style.profileDefault}>{userData?.name[0]}</div>
         }
         {

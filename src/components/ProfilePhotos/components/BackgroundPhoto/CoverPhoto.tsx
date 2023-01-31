@@ -14,7 +14,7 @@ const CoverPhoto = ({ isOwner, userData }: IProps) => {
     <div className={style.wrapper}>
       {
         userData?.cover &&
-          <Image src={ userData.cover.url } className={style.coverImage} width={+userData.cover.width} height={+userData.cover.height} alt="cover" />
+        <Image src={userData.cover.url} className={style.coverImage} width={+userData.cover.width} height={+userData.cover.height} alt="cover" />
       }
       {
         isOwner &&

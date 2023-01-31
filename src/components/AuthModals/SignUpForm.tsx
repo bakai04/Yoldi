@@ -23,7 +23,7 @@ const SignUpForm = () => {
   const onSignUp = async (data: ISignUp) => {
     const { value } = await signUpTrigger(data);
     if (value)
-      localStorage.setItem("userData", JSON.stringify({ email: data.email, token: value }));
+      localStorage.setItem("token", value);
     router.push("/");
   }
 

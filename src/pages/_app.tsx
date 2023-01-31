@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   const scroll = () => {
-    const isUserAuth = localStorage.getItem("userData");
+    const isUserAuth = localStorage.getItem("token");
     if (isUserAuth === null) router.push("/sign-in");
     window.scrollTo({
       top: 0,

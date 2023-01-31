@@ -4,18 +4,10 @@ import style from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import useSWR from "swr";
-import { getUserData } from "../../core/api/getUserData";
-import { useEffect } from "react";
+import { getUserData } from "@/core/api/getUserData";
 
 const Header = () => {
-  const [userAuth, setUserAuth] = useState(false);
-  const { data: userData } = useSWR("userData", getUserData);
-
-  useEffect(() => {
-    const isAuthUser = !!localStorage.getItem("userData");
-    setUserAuth(isAuthUser);
-  }, [])
-
+  const { data: userData } = useSWR("/profile", getUserData);
   return (
     <header className={style.header}>
       <div className={style.container}>
@@ -28,7 +20,7 @@ const Header = () => {
           </p>
         </div>
         {
-          userAuth ?
+          userData?.name ?
             <div className={style.headerUser}>
               <p className={style.headerUserName}>{userData?.name}</p>
               <Link href={"/owner"} className={style.headerUserPhoto}>
@@ -36,10 +28,10 @@ const Header = () => {
                   <Image
                     alt="photo"
                     src={userData?.image?.url || ""}
-                    width={userData?.image ? +userData.image.width : 0}
-                    height={userData?.image ? +userData.image.height : 0} />
+                    width={50}
+                    height={50} />
                 }
-                {userData?.name[0]}
+                {userData ? userData.name[0] : ""}
               </Link>
             </div> :
             <Link href={"/sign-in"}>
