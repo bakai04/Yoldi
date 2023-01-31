@@ -1,35 +1,14 @@
 .header {
-  border-bottom: 1px solid #E6E6E6;
+  border: 1px solid #E6E6E6;
 
-  .headerTop {
-    width: 100%;
-    padding: 15px 30px 15px 20px;
-    display: flex;
-
-    .headerTitle {
-      margin: 0 auto;
-      width: 100%;
-      max-width: 744px;
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 4px;
-      padding: 6px 0px;
-      text-align: center;
-
-      p {
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 14px;
-        letter-spacing: -0.2px;
-        color: #797979;
-        mix-blend-mode: luminosity;
-      }
-    }
-  }
   .container{
     width: 100%;
+    max-width: 1280px;
     padding: 15px 30px 15px 20px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     align-items: center;
 
     .logo {
@@ -38,7 +17,7 @@
       gap: 20px;
 
       .headerInform {
-        width: 225px;
+        width: 230px;
         font-family: inherit;
         font-style: normal;
         font-weight: 400;
@@ -60,6 +39,58 @@
       border: 1px solid #D5D5D5;
       border-radius: 5px;
     }
-  }
 
+    .headerUser {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      .headerUserName {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 160%;
+        text-transform: capitalize;
+        color: #000000;
+      }
+
+      .headerUserPhoto {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        background: #F3F3F3;
+        border: 1px solid #E6E6E6;
+        border-radius: 999999px;
+
+        font-weight: 400;
+        font-size: 18px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-transform: uppercase;
+        color: #000000;
+
+        img {
+          object-fit: cover;
+          position: absolute;
+          border: 1px solid #E6E6E6;
+          border-radius: 999999px;
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 576px) {
+  .header {
+    .container{
+      .logo {
+        .headerInform {
+          display: none;
+        }
+      }
+    }
+  }
 }

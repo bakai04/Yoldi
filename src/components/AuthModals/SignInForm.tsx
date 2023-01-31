@@ -5,6 +5,12 @@ import style from "./AuthModals.module.scss";
 import email from "@/assets/icons/inputMail.svg";
 import password from "@/assets/icons/inputPassword.svg";
 import { signInSchema } from "./component/utils";
+import useSWRMutation from "swr/mutation";
+import onGetToken from "@/core/api/onGetToken";
+import { useRouter } from "next/router";
+import { getUserData } from "../../core/api/getUserData";
+import Loading from "../Loading/Loading";
+
 
 interface ISignIn {
   email: string,
@@ -12,13 +18,23 @@ interface ISignIn {
 }
 
 const SignInForm = () => {
+  const { trigger: authTrigger, isMutating } = useSWRMutation("/auth/login/", onGetToken);
+  const { trigger: userDataTrigger, isMutating: profileMutating } = useSWRMutation("/profile", getUserData)
+  const router = useRouter()
 
-  const onSignIn = (data: ISignIn) => {
-    console.log(data);
+  const onSignIn = async (data: ISignIn) => {
+    const { value } = await authTrigger(data);
+    if (value) {
+      localStorage.setItem("token", value);
+      router.push("/");
+      userDataTrigger()
+    }
   }
 
   return (
     <div className={style.auth}>
+      {isMutating && <Loading />}
+      {profileMutating && <Loading />}
       <Formik
         initialValues={{
           email: "",
@@ -26,9 +42,8 @@ const SignInForm = () => {
         }}
         validateOnMount
         validateOnChange
-        validationSchema={signInSchema }
+        validationSchema={signInSchema}
         onSubmit={(values: ISignIn, { resetForm }) => {
-          console.log(values)
           resetForm();
           onSignIn(values);
         }}

@@ -24,8 +24,7 @@
     color: #000000;
 
     img {
-      width: 100%;
-      height: auto;
+      object-fit: cover;
       position: absolute;
       border: 1px solid #E6E6E6;
       border-radius: 999999px;
@@ -38,10 +37,9 @@
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    gap: 20px;
 
     .userName {
-      font-weight: 600;
+      font-weight: 500;
       font-size: 16px;
       line-height: 160%;
       color: #000000;

@@ -3,17 +3,18 @@ import Logo from "@/assets/icons/logo-wrapper.svg";
 import style from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import light from "@/assets/icons/Lights.svg"
+import useSWR from "swr";
+import { getUserData } from "@/core/api/getUserData";
+import Loading from "../Loading/Loading";
 
 const Header = () => {
+  const { data: userData, isLoading } = useSWR("/profile", getUserData);
+
   return (
     <header className={style.header}>
-      <div className={style.headerTop}>
-        <Image src={light} width={52} height={12} alt="light" />
-        <div className={style.headerTitle}>
-          <p>yoldi.agency — тестовое задание</p>
-        </div>
-      </div>
+      {
+        isLoading && <Loading/>
+      }
       <div className={style.container}>
         <div className={style.logo}>
           <Link href={"/"}>
@@ -23,11 +24,27 @@ const Header = () => {
             Разрабатываем и запускаем сложные веб проекты
           </p>
         </div>
-        <Link href={"/sign-in"}>
-          <button className={style.headerSignIn}>
-            Войти
-          </button>
-        </Link>
+        {
+          userData?.name ?
+            <div className={style.headerUser}>
+              <p className={style.headerUserName}>{userData?.name}</p>
+              <Link href={"/owner"} className={style.headerUserPhoto}>
+                {userData?.image &&
+                  <Image
+                    alt="photo"
+                    src={userData?.image?.url || ""}
+                    width={50}
+                    height={50} />
+                }
+                {userData ? userData.name[0] : ""}
+              </Link>
+            </div> :
+            <Link href={"/sign-in"}>
+              <button className={style.headerSignIn}>
+                Войти
+              </button>
+            </Link>
+        }
       </div>
     </header>
   )

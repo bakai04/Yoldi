@@ -16,6 +16,10 @@ textarea {
   font-size: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 button:hover{
   transform: scale(0.98);
   transition: 0.2s ease-in-out;
@@ -31,13 +35,7 @@ a {
   margin: 0 auto;
 }
 
-@media(max-width: 768px) {
-  .container {
-    padding: 0px 15px;
-  }
-}
-
-@media(max-width: 670px) {
+@media(max-width: 800px) {
   .container {
     padding: 0px 25px;
   }

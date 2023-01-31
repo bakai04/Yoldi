@@ -1,11 +1,9 @@
 .wrapper {
   position: relative;
-}
-
-.coverDefault{
-  background: #F3F3F3;
+  overflow: hidden;
   width: 100%;
   height: 200px;
+  background: #F3F3F3;
 }
 
 .coverPhotoBtn {
@@ -21,7 +19,7 @@
   transform: scale(.70);
 
   &:hover {
-  transform: scale(1);
-  opacity: 1;
+    transform: scale(1);
+    opacity: 1;
   }
 }

@@ -6,6 +6,9 @@ import style from "./AuthModals.module.scss";
 import email from "@/assets/icons/inputMail.svg";
 import password from "@/assets/icons/inputPassword.svg";
 import name from "@/assets/icons/inputPerson.svg";
+import useSWRMutation from "swr/mutation";
+import onGetToken from "@/core/api/onGetToken";
+import { useRouter } from "next/router";
 
 interface ISignUp {
   name: string
@@ -14,8 +17,15 @@ interface ISignUp {
 }
 
 const SignUpForm = () => {
+  const { trigger: signUpTrigger } = useSWRMutation("/auth/sign-up/", onGetToken);
+  const router = useRouter()
+
   const onSignUp = async (data: ISignUp) => {
-    console.log(data);
+    const { value } = await signUpTrigger(data);
+    if (value) {
+      localStorage.setItem("token", value);
+      router.push("/");
+    }
   }
 
   return (
