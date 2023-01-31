@@ -39,7 +39,7 @@ export async function patch<T>( body :T) {
 }
 
 
- async function post<T>(url:string, body:T) {
+ async function post(url:string, body:any) {
   const token = localStorage.getItem("token") || "";
   return await fetch(`https://frontend-test-api.yoldi.agency/api/${url}`, {
     method: "POST",
