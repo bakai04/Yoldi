@@ -9,6 +9,8 @@ import name from "@/assets/icons/inputPerson.svg";
 import useSWRMutation from "swr/mutation";
 import onGetToken from "@/core/api/onGetToken";
 import { useRouter } from "next/router";
+import { getUserData } from "@/core/api/getUserData";
+import Loading from "../Loading/Loading";
 
 interface ISignUp {
   name: string
@@ -17,19 +19,23 @@ interface ISignUp {
 }
 
 const SignUpForm = () => {
-  const { trigger: signUpTrigger } = useSWRMutation("/auth/sign-up/", onGetToken);
+  const { trigger: signUpTrigger, isMutating } = useSWRMutation("/auth/sign-up/", onGetToken);
+  const { trigger: userDataTrigger, isMutating: profileMutating } = useSWRMutation("/profile", getUserData)
   const router = useRouter()
 
   const onSignUp = async (data: ISignUp) => {
     const { value } = await signUpTrigger(data);
     if (value) {
       localStorage.setItem("token", value);
+      userDataTrigger()
       router.push("/");
     }
   }
 
   return (
     <div className={style.auth}>
+      {isMutating && <Loading />}
+      {profileMutating && <Loading />}
       <Formik
         initialValues={{
           name: "",
