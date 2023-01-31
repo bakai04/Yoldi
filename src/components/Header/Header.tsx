@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Logo from "@/assets/icons/logo-wrapper.svg";
 import style from "./Header.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import useSWR from "swr";
 import { getUserData } from "@/core/api/getUserData";
+import Loading from "../Loading/Loading";
 
 const Header = () => {
-  const { data: userData } = useSWR("/profile", getUserData);
+  const { data: userData, isLoading } = useSWR("/profile", getUserData);
+
   return (
     <header className={style.header}>
+      {
+        isLoading && <Loading/>
+      }
       <div className={style.container}>
         <div className={style.logo}>
           <Link href={"/"}>

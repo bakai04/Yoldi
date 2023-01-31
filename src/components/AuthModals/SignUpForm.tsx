@@ -22,9 +22,10 @@ const SignUpForm = () => {
 
   const onSignUp = async (data: ISignUp) => {
     const { value } = await signUpTrigger(data);
-    if (value)
+    if (value) {
       localStorage.setItem("token", value);
-    router.push("/");
+      router.push("/");
+    }
   }
 
   return (

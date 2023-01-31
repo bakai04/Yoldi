@@ -1,3 +1,4 @@
+import { notify } from "@/components/Notify/Notify";
 import { Fetcher } from "swr";
 import { IUser } from "../models/user";
 
@@ -10,10 +11,15 @@ export async function patch<T>( body :T) {
       "X-API-KEY": token || "",
     },
     body: JSON.stringify(body),
-  }).then((res:any) => res.json()).catch(e=>{ throw e});
+  }).then(async (res) => {
+    if (!res?.ok) {
+      const errorMessage = await res.json();
+      notify({ type: "error", text: errorMessage?.message });
+      throw errorMessage;
+    }
+    return res.json()
+  })
 }
-
-
 
   const get:Fetcher<IUser, string> = async (url:string) => {
   const token = localStorage.getItem("token") || "";
@@ -22,7 +28,14 @@ export async function patch<T>( body :T) {
       "Content-Type": "application/json",
       "X-API-KEY": token || "",
     },
-  }).then((res) => res.json()).catch(e=>{ throw e});
+  }).then(async (res) => {
+    if (!res?.ok) {
+      const errorMessage = await res.json();
+      notify({ type: "error", text: errorMessage?.message });
+      throw errorMessage;
+    }
+    return res.json()
+  })
 }
 
 
@@ -35,7 +48,14 @@ export async function patch<T>( body :T) {
       "X-API-KEY": token || "",
     },
     body: body,
-  }).then((res:any) => res.json()).catch(e=>{ throw e});
+  }).then(async (res) => {
+    if (!res?.ok) {
+      const errorMessage = await res.json();
+      notify({ type: "error", text: errorMessage?.message });
+      throw errorMessage;
+    }
+    return res.json()
+  })
 }
 
 

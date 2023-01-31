@@ -1,3 +1,5 @@
+import { notify } from "@/components/Notify/Notify"
+
 interface ISignUpArg {
   arg: {
     name?: string
@@ -14,7 +16,14 @@ const onGetToken = async (url:string, body:ISignUpArg) => {
       accept: "application/json",
     },
     body: JSON.stringify(body.arg),
-  }).then((res:any) => res.json()).catch(e=>{ throw e});
+  }).then(async (res:any) => {
+    if (!res?.ok) {
+      const errorMessage = await res.json();
+      notify({ type: "error", text: errorMessage?.message });
+      throw errorMessage;
+    }
+    return res.json()
+  });
 }
 
 export default onGetToken;

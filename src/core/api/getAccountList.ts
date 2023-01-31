@@ -1,10 +1,17 @@
 import { IUser } from "../models/user";
 import { Fetcher } from 'swr'
+import { notify } from "@/components/Notify/Notify";
 
 const getAccountList : Fetcher<IUser[], string> = async () => {
   return await fetch(`https://frontend-test-api.yoldi.agency/api/user/`)
-    .then(( res) => res.json())
-    .catch(e => { throw e});
+    .then(async (res) => {
+      if (!res?.ok) {
+        const errorMessage = await res.json();
+        notify({ type: "error", text: errorMessage?.message });
+        throw errorMessage;
+      }
+      return res.json()
+    })
 }
 
 export default getAccountList;

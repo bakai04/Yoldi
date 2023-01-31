@@ -20,8 +20,8 @@ function Owner() {
 
   const onLogout = () => {
     localStorage.clear();
-    mutate(getUserData("/profile"))
-    router.push("/sign-in")
+    mutate(getUserData("/profile"));
+    router.push("/sign-in");
   }
 
   return (

@@ -1,5 +1,5 @@
 import { IUser } from "@/core/models/user";
-import { Form, Formik, Field, ErrorMessage } from "formik";
+import {  Formik,  } from "formik";
 import React from 'react'
 import EditProfileForm from "./components/EditProfileForm/EditProfileForm";
 import { editSchema } from "./components/validatingSchema";
