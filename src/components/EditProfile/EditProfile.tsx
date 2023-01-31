@@ -27,7 +27,6 @@ const EditProfile = ({ toggleEditModal, userData }: IEditProfileProps) => {
   }
 
   return (
-
     <div className={style.editProfile}>
       <div className={style.editProfileBack} onClick={toggleEditModal}></div>
       <Formik
