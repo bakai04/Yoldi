@@ -2,7 +2,6 @@ import Image from "next/image";
 import React, { useState } from 'react'
 import { EditCover } from "../EditPhoto/EditPhoto";
 import style from "./CoverPhoto.module.scss";
-import back from "@/assets/image/background.png";
 import { IUser } from "@/core/models/user";
 
 interface IProps {
@@ -11,19 +10,16 @@ interface IProps {
 }
 
 const CoverPhoto = ({ isOwner, userData }: IProps) => {
-  const [isEmpty, setIsEmpty] = useState(!!userData?.cover);
-
   return (
     <div className={style.wrapper}>
       {
-        userData?.cover ?
-          <Image src={back} className={style.coverImage} width={0} height={0} alt="cover" /> :
-          <div className={style.coverDefault}></div>
+        userData?.cover &&
+          <Image src={ userData.cover.url } className={style.coverImage} width={+userData.cover.width} height={+userData.cover.height} alt="cover" />
       }
       {
         isOwner &&
         <div className={style.coverPhotoBtn}>
-          <EditCover isEmpty={isEmpty} />
+          <EditCover />
         </div>
       }
     </div >
