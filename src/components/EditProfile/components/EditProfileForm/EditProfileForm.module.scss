@@ -50,6 +50,12 @@
       line-height: 160%;
       color: #838383;
       background: #F3F3F3;
+      border-right: 1px solid #838383;
+      overflow-x: auto;
+      &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
     }
 
     .editEmailInput {
@@ -59,7 +65,6 @@
       font-size: 16px;
       padding: 12px 20px;
       line-height: 160%;
-      border-left: 1px solid #838383;
     }
   }
 
